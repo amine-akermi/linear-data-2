@@ -1,0 +1,69 @@
+ALGORITHM distanct_element_sum_sol1
+VAR
+    set1,set2: ARRAY_OF INTEGER[];
+    i,j,s:INTEGER;
+    found : BOOLEAN :=false;
+BEGIN
+ s:=0;
+
+    FOR i FROM 0 TO set1.length-1 STEP 1  DO
+        write("entrer les nombres du tableau 1 :")
+        read(set1[i]);
+         write("entrer les nombres du tableau 2 :")
+        read(set2[i]);
+    END_FOR
+    FOR i FROM 0 TO set1.length-1 STEP 1  DO
+    FOR j FROM 0 TO set2.length-1 STEP 1  DO
+        IF (set1[i]==set2[j]) THEN
+            found:=true;
+        END_IF
+    END_FOR
+    IF (found = false) THEN
+        s:=s+set1[i];
+    END_IF
+    END_FOR
+    write("the sum of distanct elements :",s)
+END
+
+ALGORITHM distanct_element_sum_sol2
+VAR
+ set1,set2 : ARRAY_OF INTEGER[];
+ set:HASH_TABLE< INTEGER,INTEGER>;
+ i,j,k,s:INTEGER;
+BEGIN
+    s:=0;
+    k:=set1.length;
+    FOR i FROM 0 TO set1.length-1 STEP 1  DO
+        set.insert(set1[i],i);
+    END_FOR
+           FOR j FROM 0 TO set.length STEP 1  DO
+                 IF (set.lookup(set2[j]) THEN
+                found:=true;
+                 ELSE
+    s:=s+set.get(set2[j]);
+ END_IF         
+           END_FOR
+       
+    write("la somme des elments distanct est :",s);
+END
+ALGORITHM distanct_element_sum_sol2_2
+VAR
+ set1,set2 : ARRAY_OF INTEGER[];
+ set:HASH_TABLE< INTEGER,INTEGER>;
+ i,j,k,s:INTEGER;
+BEGIN
+    s:=0;
+    k:=set1.length;
+    FOR i FROM 0 TO set1.length-1 STEP 1  DO
+        set.insert(set1[i],i);
+    END_FOR
+           FOR j FROM 0 TO set.length STEP 1  DO
+                 IF (set.lookup(set2[j]) THEN
+              s:=s+set.get(set2[j]);
+                 ELSE
+    write("elements not found !!");
+ END_IF         
+           END_FOR
+       
+    write("la somme des elments egaux est :",s);
+END
